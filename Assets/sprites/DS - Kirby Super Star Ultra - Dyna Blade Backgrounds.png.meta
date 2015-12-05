@@ -1,0 +1,309 @@
+fileFormatVersion: 2
+guid: 14938ba04ba174751a7a46e37c3bce81
+timeCreated: 1448865718
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_0
+    21300002: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_1
+    21300004: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_2
+    21300006: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_3
+    21300008: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_4
+    21300010: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_5
+    21300012: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_6
+    21300014: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_7
+    21300016: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_8
+    21300018: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_9
+    21300020: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_10
+    21300022: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_11
+    21300024: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_12
+    21300026: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_13
+    21300028: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_14
+    21300030: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_15
+    21300032: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_16
+    21300034: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_17
+    21300036: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_18
+    21300038: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_19
+    21300040: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_20
+    21300042: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_21
+    21300044: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_22
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 16
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 912
+        width: 325
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_1
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 912
+        width: 242
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_2
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 912
+        width: 153
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_3
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 912
+        width: 242
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_4
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 912
+        width: 243
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 702
+        width: 336
+        height: 208
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_6
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 694
+        width: 336
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_7
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 694
+        width: 336
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_8
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 694
+        width: 336
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_9
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 694
+        width: 336
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 678
+        width: 386
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_11
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 460
+        width: 1608
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 442
+        width: 243
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_13
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 442
+        width: 310
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_14
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 442
+        width: 242
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_15
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 442
+        width: 253
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_16
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 184
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_17
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 224
+        width: 384
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_18
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 200
+        width: 336
+        height: 240
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_19
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 16
+        width: 288
+        height: 424
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_20
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 16
+        width: 288
+        height: 424
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_21
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 5
+        width: 384
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DS - Kirby Super Star Ultra - Dyna Blade Backgrounds_22
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 75
+        width: 324
+        height: 73
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
