@@ -19,8 +19,13 @@ public class platformerPlayer : MonoBehaviour {
 	
 	//variable to control the speed the character jumps
 	public float jumpSpeed = 10;
-	
-	
+
+	//variable for the health
+	public float health = 3;
+
+	//variable for the lives
+	public float lives = 3;
+		
 	//variable to control the velocity
 	private Vector2 myVelocity = Vector2.zero; 
 	
@@ -49,6 +54,8 @@ public class platformerPlayer : MonoBehaviour {
 	
 	//boolean that determines if the rooster card has been selected
 	public bool rooster = false;
+
+
 
 	
 	
@@ -80,6 +87,76 @@ public class platformerPlayer : MonoBehaviour {
 			myRigidbody.velocity = new Vector2 (jumpSpeed, myRigidbody.velocity.y);
 			
 		} 
+
+		//1 sets dragon to true
+		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
+		{
+			dragon = true;
+			print ("dragon");
+			
+			//Destroy (this.gameObject);
+		} 
+		
+		//3 sets tiburon to true
+		else if (Input.GetKey(KeyCode.Alpha2)  || Input.GetKey(KeyCode.Keypad2))
+		{
+			tiburon = true;
+			print ("tiburon" + tiburon);
+		} 
+		
+		//1 sets eagle to true
+		else if (Input.GetKey(KeyCode.Alpha3)  || Input.GetKey(KeyCode.Keypad3))
+		{
+			eagle = true;
+			print ("eagle" + eagle);
+		} 
+		
+		//1 sets wolf to true
+		else if (Input.GetKey(KeyCode.Alpha4)  || Input.GetKey(KeyCode.Keypad4))
+		{
+			wolf = true;
+			print ("wolf" + wolf);
+		} 
+		
+		//1 sets rooster to true
+		else if (Input.GetKey(KeyCode.Alpha5)  || Input.GetKey(KeyCode.Keypad5))
+		{
+			rooster = true;
+			print ("rooster" + rooster);
+		} 
+
+		//checks if 2 cards have been selected plus Return 
+		
+		if (tiburon == true && rooster == true && Input.GetKey (KeyCode.Return))
+		{
+			myRigidbody.transform.localScale = new Vector3 (2, 2, 2);
+			print ("scale");
+		}
+
+		else if (tiburon == true && eagle == true && Input.GetKey (KeyCode.Return))
+		{
+			myRigidbody.transform.localScale = new Vector3 (.5, .5, .5);
+			print ("small scale");
+		}
+
+		else if (tiburon == true && dragon == true && Input.GetKey (KeyCode.Return))
+		{
+			walkSpeed = 15;
+			print(walkSpeed);
+		}
+
+		else if (rooster == true && dragon == true && Input.GetKey (KeyCode.Return))
+		{
+			jumpSpeed = 7;
+			print(jumpSpeed);
+		}
+
+		
+		else if (eagle == true && dragon == true && Input.GetKey (KeyCode.Return))
+		{
+			health += 3;
+		}
+
 		
 		if (isGrounded == true) 
 		{
@@ -91,47 +168,6 @@ public class platformerPlayer : MonoBehaviour {
 				myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, jumpSpeed);
 			}
 		}
-
-		//the user selectes the cards that he want by pressing on 1, 2, 3, 4, or 5
-
-		//1 sets dragon to true
-		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
-		{
-			dragon = true;
-			print ("dragon");
-
-			//Destroy (this.gameObject);
-		} 
-
-		//3 sets tiburon to true
-		else if (Input.GetKey(KeyCode.Alpha2)  || Input.GetKey(KeyCode.Keypad2))
-		{
-			tiburon = true;
-			print ("tiburon" + tiburon);
-		} 
-
-		//1 sets eagle to true
-		else if (Input.GetKey(KeyCode.Alpha3)  || Input.GetKey(KeyCode.Keypad3))
-		{
-			eagle = true;
-			print ("eagle" + eagle);
-		} 
-
-		//1 sets wolf to true
-		else if (Input.GetKey(KeyCode.Alpha4)  || Input.GetKey(KeyCode.Keypad4))
-		{
-			wolf = true;
-			print ("wolf" + wolf);
-		} 
-
-		//1 sets rooster to true
-		else if (Input.GetKey(KeyCode.Alpha5)  || Input.GetKey(KeyCode.Keypad5))
-		{
-			rooster = true;
-			print ("rooster" + rooster);
-		} 
-
-
 		
 		//Draws a line from the foot downward slighly.
 		Debug.DrawLine (foot.transform.position, foot.transform.position + new Vector3 (0, -0.1f, 0));
