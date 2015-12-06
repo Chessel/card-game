@@ -15,7 +15,7 @@ public class platformerPlayer : MonoBehaviour {
 	private GameObject springRigidbody = null;
 	
 	//variable to control the speed the character moves
-	public float walkSpeed = 3;
+	public float walkSpeed = 1.5f;
 	
 	//variable to control the speed the character jumps
 	public float jumpSpeed = 10;
@@ -56,6 +56,19 @@ public class platformerPlayer : MonoBehaviour {
 	public bool rooster = false;
 
 
+	//variable that set the player score
+	public float score = 0;
+
+
+	//variable to update the score
+	public GameObject scoreText = null;
+
+
+	//timer
+	//reference object fro my timer
+	public GameObject timeSlider = null;
+	//private int timer 2 minutes to collect at least 3 coins to continue to the next level
+	private float timer = 120;
 
 	
 	
@@ -129,20 +142,26 @@ public class platformerPlayer : MonoBehaviour {
 		
 		if (tiburon == true && rooster == true && Input.GetKey (KeyCode.Return))
 		{
-			myRigidbody.transform.localScale = new Vector3 (2, 2, 2);
-			print ("scale");
+			walkSpeed = 15;
+			print(walkSpeed);
+
 		}
 
 		else if (tiburon == true && eagle == true && Input.GetKey (KeyCode.Return))
 		{
-			myRigidbody.transform.localScale = new Vector3 (.5, .5, .5);
+			myRigidbody.transform.localScale = new Vector3 (.5f, .5f, .5f);
 			print ("small scale");
 		}
 
 		else if (tiburon == true && dragon == true && Input.GetKey (KeyCode.Return))
 		{
-			walkSpeed = 15;
-			print(walkSpeed);
+			myRigidbody.transform.localScale = new Vector3 (2, 2, 2);
+			print ("scale");
+		}
+
+		else if (tiburon == true && wolf == true && Input.GetKey (KeyCode.Return))
+		{
+			lives +=1;
 		}
 
 		else if (rooster == true && dragon == true && Input.GetKey (KeyCode.Return))
@@ -151,11 +170,34 @@ public class platformerPlayer : MonoBehaviour {
 			print(jumpSpeed);
 		}
 
+		else if (rooster == true && eagle == true && Input.GetKey (KeyCode.Return))
+		{
+			myRigidbody.gravityScale = 0; 
+			print( myRigidbody.gravityScale);
+		}
+
+		else if (rooster == true && wolf == true && Input.GetKey (KeyCode.Return))
+		{
+			walkSpeed = 1; 
+		}
+
 		
 		else if (eagle == true && dragon == true && Input.GetKey (KeyCode.Return))
 		{
 			health += 3;
 		}
+
+		else if (eagle == true && wolf == true && Input.GetKey (KeyCode.Return))
+		{
+			health -= 3;
+		}
+
+		else if (dragon == true && wolf == true && Input.GetKey (KeyCode.Return))
+		{
+			lives -=1;
+		}
+
+
 
 		
 		if (isGrounded == true) 
@@ -184,6 +226,21 @@ public class platformerPlayer : MonoBehaviour {
 			//hit something
 			isGrounded = true;
 		}
+
+		//upadtes the timer
+		//Timer.deltaTime is the nummber of seconds since the last frame
+		//About 1/frame rate or 1/60
+
+		timer -= Time.deltaTime;
+		timeSlider.GetComponent<Slider> ().value = timer;
+
+		if (timeSlider.GetComponent<Slider> ().value <= 3 && spellCards < 3 ) 
+		{
+			Application.LoadLevel("GameOver");
+			lives --;
+		}
+
+
 	} //Update
 	
 	void OnCollisionEnter2D(Collision2D coll) {
@@ -194,6 +251,10 @@ public class platformerPlayer : MonoBehaviour {
 			//destroys the spellCard and the counter spellCards increases by one everytime the player collects a card
 			Destroy (coll.gameObject);
 			spellCards ++;
+			score += 100;
+			print (score);
+
+			scoreText.GetComponent<Text>().text = "Score: " + score.ToString();
 		}
 
 
@@ -207,17 +268,46 @@ public class platformerPlayer : MonoBehaviour {
 
 		}
 
-		if (coll.gameObject.tag == "spellCard")
-		{
+//		if (coll.gameObject.tag == "spellCard")
+//		{
+//
+//			if (gameObject.name == ("dargon"))
+//			//The door now Canvas Behaviour opened
+//				{
+//					dragon = true;
+//				print (dragon);
+//				}
+//			
+//		}
 
-			if (gameObject.name == ("dargon"))
-			//The door now Canvas Behaviour opened
+		if(coll.gameObject.name == "enemy")
+		{
+			if(health >= 1)
+			{
+				health--;
+			}else if(health < 1)
+			{
+				
+				if(lives >= 1)
 				{
-					dragon = true;
-				print (dragon);
+					lives--;
+					
+				}else if(lives < 1)
+				{
+					lives--;
+					Destroy(this.gameObject);
+					Application.LoadLevel("GameOver");
+					print ("Game Over!");
 				}
+				
+				
+				print (lives);
+			}
 			
 		}
+		print (health);
+			
+
 
 	} //OnCollissionEnter2D
 
