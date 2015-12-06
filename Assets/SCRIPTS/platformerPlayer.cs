@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class platformerPlayer : MonoBehaviour {
 	
@@ -64,16 +65,8 @@ public class platformerPlayer : MonoBehaviour {
 	public GameObject scoreText = null;
 
 
-	//timer
-	//reference object fro my timer
-	public GameObject timeSlider = null;
-	//private int timer 2 minutes to collect at least 3 coins to continue to the next level
-	private float timer = 120;
+	public List<string> spellsList = new List<string>();
 
-	
-	
-	
-	
 	// Use this for initialization
 	void Start () 
 	{
@@ -197,7 +190,17 @@ public class platformerPlayer : MonoBehaviour {
 			lives -=1;
 		}
 
+		//the spell cards taken on level 1 enable te spell cards on level 2 
 
+//		if (score == 300) 
+//		{
+//			GameObject.Find("dragon").active = true;
+//			GameObject.Find("tiburon").active = true;
+//			GameObject.Find("eagle").active = true;
+//			GameObject.Find("wolf").active = false;
+//			GameObject.Find("rooster").active = false;
+//
+//		}
 
 		
 		if (isGrounded == true) 
@@ -227,18 +230,7 @@ public class platformerPlayer : MonoBehaviour {
 			isGrounded = true;
 		}
 
-		//upadtes the timer
-		//Timer.deltaTime is the nummber of seconds since the last frame
-		//About 1/frame rate or 1/60
 
-		timer -= Time.deltaTime;
-		timeSlider.GetComponent<Slider> ().value = timer;
-
-		if (timeSlider.GetComponent<Slider> ().value <= 3 && spellCards < 3 ) 
-		{
-			Application.LoadLevel("GameOver");
-			lives --;
-		}
 
 
 	} //Update
@@ -248,11 +240,13 @@ public class platformerPlayer : MonoBehaviour {
 		if (coll.gameObject.tag == "spellCard") 
 		{
 
+			spellsList.Add (coll.gameObject.name);
 			//destroys the spellCard and the counter spellCards increases by one everytime the player collects a card
 			Destroy (coll.gameObject);
 			spellCards ++;
 			score += 100;
-			print (score);
+			print (coll.gameObject.name + " added. Score = " + score);
+			print (spellsList.ToArray ());
 
 			scoreText.GetComponent<Text>().text = "Score: " + score.ToString();
 		}
@@ -268,17 +262,6 @@ public class platformerPlayer : MonoBehaviour {
 
 		}
 
-//		if (coll.gameObject.tag == "spellCard")
-//		{
-//
-//			if (gameObject.name == ("dargon"))
-//			//The door now Canvas Behaviour opened
-//				{
-//					dragon = true;
-//				print (dragon);
-//				}
-//			
-//		}
 
 		if(coll.gameObject.name == "enemy")
 		{
