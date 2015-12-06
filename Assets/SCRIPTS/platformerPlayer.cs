@@ -13,7 +13,7 @@ public class platformerPlayer : MonoBehaviour {
 	//private BoxCollider2D stepRigidbody = null;
 	
 	//variable to call the spring that triggers the elevators
-	private GameObject springRigidbody = null;
+	// private GameObject springRigidbody = null;
 	
 	//variable to control the speed the character moves
 	public float walkSpeed = 1.5f;
@@ -28,7 +28,7 @@ public class platformerPlayer : MonoBehaviour {
 	public float lives = 3;
 		
 	//variable to control the velocity
-	private Vector2 myVelocity = Vector2.zero; 
+	// private Vector2 myVelocity = Vector2.zero; 
 	
 	//variable set at the bottom of the character 
 	public GameObject foot = null;
@@ -63,15 +63,22 @@ public class platformerPlayer : MonoBehaviour {
 
 	//variable to update the score
 	public GameObject scoreText = null;
-
-
+	public GameObject dragonCardReference = null;
 	public List<string> spellsList = new List<string>();
 
+	void Awake ()
+	{
+		print ("I am awake");
+		DontDestroyOnLoad(GameObject.FindWithTag("spellCard"));
+		DontDestroyOnLoad (GameObject.FindWithTag ("dragonCard"));
+	}
 	// Use this for initialization
 	void Start () 
 	{
 		myRigidbody = this.GetComponent<Rigidbody2D> ();
-
+		dragonCardReference = GameObject.FindWithTag ("dragonCard");
+		dragonCardReference.SetActive(false);
+		print (dragonCardReference);
 	}
 	
 	// Update is called once per frame
@@ -94,9 +101,14 @@ public class platformerPlayer : MonoBehaviour {
 			
 		} 
 
+
+		// Level 2 spell select
+
+
 		//1 sets dragon to true
 		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
 		{
+
 			dragon = true;
 			print ("dragon");
 			
@@ -131,6 +143,7 @@ public class platformerPlayer : MonoBehaviour {
 			print ("rooster" + rooster);
 		} 
 
+		// making spells
 		//checks if 2 cards have been selected plus Return 
 		
 		if (tiburon == true && rooster == true && Input.GetKey (KeyCode.Return))
@@ -239,15 +252,12 @@ public class platformerPlayer : MonoBehaviour {
 		//checks the player hits a spell card
 		if (coll.gameObject.tag == "spellCard") 
 		{
-
 			spellsList.Add (coll.gameObject.name);
 			//destroys the spellCard and the counter spellCards increases by one everytime the player collects a card
 			Destroy (coll.gameObject);
 			spellCards ++;
 			score += 100;
 			print (coll.gameObject.name + " added. Score = " + score);
-			print (spellsList.ToArray ());
-
 			scoreText.GetComponent<Text>().text = "Score: " + score.ToString();
 		}
 
@@ -281,16 +291,12 @@ public class platformerPlayer : MonoBehaviour {
 					Destroy(this.gameObject);
 					Application.LoadLevel("GameOver");
 					print ("Game Over!");
-				}
-				
-				
+				}		
 				print (lives);
 			}
-			
+
 		}
 		print (health);
-			
-
 
 	} //OnCollissionEnter2D
 
@@ -300,6 +306,15 @@ public class platformerPlayer : MonoBehaviour {
 		if (openDoor == true && Input.GetKey(KeyCode.O))
 		{
 			Application.LoadLevel("level2");
+			foreach( string x in spellsList) {
+				print ( x + "Card" );
+				if (x + "Card" == "dragonCard")
+				{
+				  print ("I am in the if statement");
+				  dragonCardReference = GameObject.FindWithTag ("dragonCard");
+				  dragonCardReference.SetActive(true);
+				}
+			}
 		}
 	} //OnTriggerStay2D()
 
