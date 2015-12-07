@@ -60,25 +60,66 @@ public class platformerPlayer : MonoBehaviour {
 	//variable that set the player score
 	public float score = 0;
 
-
 	//variable to update the score
 	public GameObject scoreText = null;
-	public GameObject dragonCardReference = null;
+
+	//variables to assign a ceach spellCard  to a Game object
+	public GameObject dragonCardReference;
+	public GameObject roosterCardReference;
+	public GameObject tiburonCardReference;
+	public GameObject eagleCardReference;
+	public GameObject wolfCardReference;
+
+	//makes a List of the spellCArds ThreadSafeAttribute have been collected
 	public List<string> spellsList = new List<string>();
 
 	void Awake ()
 	{
-		print ("I am awake");
-		DontDestroyOnLoad(GameObject.FindWithTag("spellCard"));
-		DontDestroyOnLoad (GameObject.FindWithTag ("dragonCard"));
+		DontDestroyOnLoad (GameObject.FindWithTag ("spellCard"));
+		DontDestroyOnLoad ( List<string> (spellsList) );
+//		DontDestroyOnLoad (GameObject.FindWithTag ("dragonCard"));
+//		DontDestroyOnLoad (GameObject.FindWithTag ("tiburonCard"));
+//		DontDestroyOnLoad (GameObject.FindWithTag ("wolfCard"));
+//		DontDestroyOnLoad (GameObject.FindWithTag ("roosterCard"));
+//		DontDestroyOnLoad (GameObject.FindWithTag ("eagleCard"));
 	}
 	// Use this for initialization
 	void Start () 
 	{
 		myRigidbody = this.GetComponent<Rigidbody2D> ();
-		dragonCardReference = GameObject.FindWithTag ("dragonCard");
-		dragonCardReference.SetActive(false);
-		print (dragonCardReference);
+		
+		if (Application.loadedLevelName == "level2") 
+		{
+			// print ("level2 loaded");
+			dragonCardReference = GameObject.FindWithTag ("dragonCard");
+			tiburonCardReference = GameObject.FindWithTag ("tiburonCard");
+			roosterCardReference = GameObject.FindWithTag ("roosterCard");
+			wolfCardReference = GameObject.FindWithTag ("wolfCard");
+			eagleCardReference = GameObject.FindWithTag ("eagleCard");
+			
+			dragonCardReference.SetActive (false);
+			tiburonCardReference.SetActive (false);
+			roosterCardReference.SetActive (false);
+			wolfCardReference.SetActive (false);
+			eagleCardReference.SetActive (false);
+
+			foreach (string x in spellsList) {
+				print (x + "Card");
+				
+				if (x == "dragon") {
+					dragonCardReference.SetActive (true);
+				} else if (x == "tiburon") {
+					tiburonCardReference.SetActive (true);
+				} else if (x == "rooster") {
+					roosterCardReference.SetActive (true);
+				} else if (x == "eagle") {
+					eagleCardReference.SetActive (true);
+				} else if (x == "wolf") {
+					wolfCardReference.SetActive (true);
+				}	
+			}
+		
+		}
 	}
 	
 	// Update is called once per frame
@@ -97,10 +138,37 @@ public class platformerPlayer : MonoBehaviour {
 		{
 			//character moves right
 			//keep y the same but go right
-			myRigidbody.velocity = new Vector2 (jumpSpeed, myRigidbody.velocity.y);
+			myRigidbody.velocity = new Vector2 (walkSpeed, myRigidbody.velocity.y);
 			
 		} 
-
+		// check if there's something below the character
+		if (isGrounded == true) 
+		{
+			// jump			
+			if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.Space)) 
+			{
+				//character jumps pressing keys W, up arrpw and space bar
+				//keep x the same but go jump
+				myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, jumpSpeed);
+			}
+		}
+		
+		//Draws a line from the foot downward slighly.
+		Debug.DrawLine (foot.transform.position, foot.transform.position + new Vector3 (0, -0.1f, 0));
+		
+		RaycastHit2D hit = Physics2D.Raycast(foot.transform.position, -Vector2.up, 0.1f);
+		
+		//this checks if there is something underneath the character
+		if (hit.collider == null) 
+		{
+			//hit nothing
+			isGrounded = false;
+		} else
+		{
+			//hit something
+			isGrounded = true;
+		}
+		
 
 		// Level 2 spell select
 
@@ -110,8 +178,8 @@ public class platformerPlayer : MonoBehaviour {
 		{
 
 			dragon = true;
-			print ("dragon");
-			
+			print ("dragon" + dragon);
+
 			//Destroy (this.gameObject);
 		} 
 		
@@ -120,27 +188,34 @@ public class platformerPlayer : MonoBehaviour {
 		{
 			tiburon = true;
 			print ("tiburon" + tiburon);
+
+
 		} 
 		
 		//1 sets eagle to true
 		else if (Input.GetKey(KeyCode.Alpha3)  || Input.GetKey(KeyCode.Keypad3))
 		{
 			eagle = true;
-			print ("eagle" + eagle);
+			//print ("eagle" + eagle);
+
+
 		} 
 		
 		//1 sets wolf to true
 		else if (Input.GetKey(KeyCode.Alpha4)  || Input.GetKey(KeyCode.Keypad4))
 		{
 			wolf = true;
-			print ("wolf" + wolf);
+			//print ("wolf" + wolf);
+
 		} 
 		
 		//1 sets rooster to true
 		else if (Input.GetKey(KeyCode.Alpha5)  || Input.GetKey(KeyCode.Keypad5))
 		{
 			rooster = true;
-			print ("rooster" + rooster);
+			//print ("rooster" + rooster);
+
+
 		} 
 
 		// making spells
@@ -203,47 +278,7 @@ public class platformerPlayer : MonoBehaviour {
 			lives -=1;
 		}
 
-		//the spell cards taken on level 1 enable te spell cards on level 2 
-
-//		if (score == 300) 
-//		{
-//			GameObject.Find("dragon").active = true;
-//			GameObject.Find("tiburon").active = true;
-//			GameObject.Find("eagle").active = true;
-//			GameObject.Find("wolf").active = false;
-//			GameObject.Find("rooster").active = false;
-//
-//		}
-
-		
-		if (isGrounded == true) 
-		{
-			
-			if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.Space)) 
-			{
-				//character jumps pressing keys W, up arrpw and space bar
-				//keep x the same but go jump
-				myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, jumpSpeed);
-			}
-		}
-		
-		//Draws a line from the foot downward slighly.
-		Debug.DrawLine (foot.transform.position, foot.transform.position + new Vector3 (0, -0.1f, 0));
-		
-		RaycastHit2D hit = Physics2D.Raycast(foot.transform.position, -Vector2.up, 0.1f);
-
-		//this checks if there is something underneath the character
-		if (hit.collider == null) 
-		{
-			//hit nothing
-			isGrounded = false;
-		} else
-		{
-			//hit something
-			isGrounded = true;
-		}
-
-
+	
 
 
 	} //Update
@@ -255,7 +290,7 @@ public class platformerPlayer : MonoBehaviour {
 			spellsList.Add (coll.gameObject.name);
 			//destroys the spellCard and the counter spellCards increases by one everytime the player collects a card
 			Destroy (coll.gameObject);
-			spellCards ++;
+			spellCards++;
 			score += 100;
 			print (coll.gameObject.name + " added. Score = " + score);
 			scoreText.GetComponent<Text>().text = "Score: " + score.ToString();
@@ -305,17 +340,9 @@ public class platformerPlayer : MonoBehaviour {
 	{
 		if (openDoor == true && Input.GetKey(KeyCode.O))
 		{
-			Application.LoadLevel("level2");
-			foreach( string x in spellsList) {
-				print ( x + "Card" );
-				if (x + "Card" == "dragonCard")
-				{
-				  print ("I am in the if statement");
-				  dragonCardReference = GameObject.FindWithTag ("dragonCard");
-				  dragonCardReference.SetActive(true);
-				}
-			}
+		Application.LoadLevel("level2");
 		}
+
 	} //OnTriggerStay2D()
 
 
