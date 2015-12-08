@@ -64,11 +64,11 @@ public class platformerPlayer : MonoBehaviour {
 	public GameObject scoreText = null;
 
 	//variables to assign a ceach spellCard  to a Game object
-	public GameObject dragonCardReference;
-	public GameObject roosterCardReference;
-	public GameObject tiburonCardReference;
-	public GameObject eagleCardReference;
-	public GameObject wolfCardReference;
+//	public GameObject dragonCardReference;
+//	public GameObject roosterCardReference;
+//	public GameObject tiburonCardReference;
+//	public GameObject eagleCardReference;
+//	public GameObject wolfCardReference;
 
 	//makes a List of the spellCArds ThreadSafeAttribute have been collected
 	public List<string> spellsList = new List<string>();
@@ -76,7 +76,8 @@ public class platformerPlayer : MonoBehaviour {
 	void Awake ()
 	{
 		DontDestroyOnLoad (GameObject.FindWithTag ("spellCard"));
-		DontDestroyOnLoad ( List<string> (spellsList) );
+		DontDestroyOnLoad (this.gameObject);
+//		DontDestroyOnLoad ( List<string> (spellsList) );
 //		DontDestroyOnLoad (GameObject.FindWithTag ("dragonCard"));
 //		DontDestroyOnLoad (GameObject.FindWithTag ("tiburonCard"));
 //		DontDestroyOnLoad (GameObject.FindWithTag ("wolfCard"));
@@ -88,7 +89,7 @@ public class platformerPlayer : MonoBehaviour {
 	{
 		myRigidbody = this.GetComponent<Rigidbody2D> ();
 		
-		if (Application.loadedLevelName == "level2") 
+		/*if (Application.loadedLevelName == "level2") 
 		{
 			// print ("level2 loaded");
 			dragonCardReference = GameObject.FindWithTag ("dragonCard");
@@ -119,7 +120,7 @@ public class platformerPlayer : MonoBehaviour {
 				}	
 			}
 		
-		}
+		}*/
 	}
 	
 	// Update is called once per frame
@@ -288,6 +289,7 @@ public class platformerPlayer : MonoBehaviour {
 		if (coll.gameObject.tag == "spellCard") 
 		{
 			spellsList.Add (coll.gameObject.name);
+			print (spellsList);
 			//destroys the spellCard and the counter spellCards increases by one everytime the player collects a card
 			Destroy (coll.gameObject);
 			spellCards++;

@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{1EEDBE59-9BDA-F068-F6DA-1292C73D1595}</ProjectGuid>
+	<ProjectGuid>{AD5F8AFA-8A0F-690E-ACDB-68BE23225B77}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -50,6 +50,7 @@
      <Compile Include="Assets\SCRIPTS\elevators.cs" />
      <Compile Include="Assets\SCRIPTS\platformerPlayer.cs" />
      <Compile Include="Assets\SCRIPTS\restartLevel.cs" />
+     <Compile Include="Assets\SCRIPTS\spellCards.cs" />
      <Compile Include="Assets\SCRIPTS\timer.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>

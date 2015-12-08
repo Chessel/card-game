@@ -18,7 +18,7 @@ public class elevators : MonoBehaviour {
 	private float maxHeight = 3;
 	
 	//sets the minumin heigh the elevators can go
-	private float minHeight = -1.5f;
+	private float minHeight = -1;
 
 
 	
