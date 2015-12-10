@@ -56,14 +56,14 @@ public class platformerPlayer : MonoBehaviour {
 	//boolean that determines if the rooster card has been selected
 	public bool rooster = false;
 
-
-
-
 	//variable that set the player score
 	public float score = 0;
 
 	//variable to update the score
 	public GameObject scoreText = null;
+
+	//Variable for the Press O to open Door
+	public GameObject pressO;
 
 	//variables to assign a ceach spellCard  to a Game object
 //	public GameObject dragonCardReference;
@@ -89,6 +89,7 @@ public class platformerPlayer : MonoBehaviour {
 	void Start () 
 	{
 		myRigidbody = this.GetComponent<Rigidbody2D> ();
+		pressO.SetActive (false);
 
 	}
 
@@ -99,56 +100,84 @@ public class platformerPlayer : MonoBehaviour {
 		
 		
 		//1 sets dragon to true
-		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
+		if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
 		{
 			
-			dragon = true;
+			//dragon = true;
 			print ("dragon" + dragon);
 			//add the name of the object to the spellList list
-			selectedSpellsList.Add (gameObject.name);
+			selectedSpellsList.Add (GameObject.FindWithTag("dragonCard").gameObject.name);
+			if(selectedSpellsList.Count > 2)
+			{
+				GameObject.FindWithTag (selectedSpellsList[0]).GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+				selectedSpellsList.Remove (selectedSpellsList[0]);
+
+			}
 			
 			//Destroy (this.gameObject);
 		} 
 		
 		//3 sets tiburon to true
-		else if (Input.GetKey(KeyCode.Alpha2)  || Input.GetKey(KeyCode.Keypad2))
+		else if (Input.GetKeyDown(KeyCode.Alpha2)  || Input.GetKeyDown(KeyCode.Keypad2))
 		{
-			tiburon = true;
+			//tiburon = true;
 			print ("tiburon" + tiburon);
 
 			//add the name of the object to the spellList list
-			selectedSpellsList.Add (gameObject.name);
+			selectedSpellsList.Add (GameObject.FindWithTag("tiburonCard").gameObject.name);
+			if(selectedSpellsList.Count > 2)
+			{
+				GameObject.FindWithTag (selectedSpellsList[0]).GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+				selectedSpellsList.Remove (selectedSpellsList[0]);
+
+			}
 
 		} 
 		
 		//1 sets eagle to true
-		else if (Input.GetKey(KeyCode.Alpha3)  || Input.GetKey(KeyCode.Keypad3))
+		else if (Input.GetKeyDown(KeyCode.Alpha3)  || Input.GetKeyDown(KeyCode.Keypad3))
 		{
-			eagle = true;
+			//eagle = true;
 			print ("eagle" + eagle);
 			//add the name of the object to the spellList list
-			selectedSpellsList.Add (gameObject.name);
-			
-			
+			selectedSpellsList.Add (GameObject.FindWithTag("eagleCard").gameObject.name);
+			if(selectedSpellsList.Count > 2)
+			{
+				GameObject.FindWithTag (selectedSpellsList[0]).GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+				selectedSpellsList.Remove (selectedSpellsList[0]);
+
+			}
+					
 		} 
 		
 		//1 sets wolf to true
-		else if (Input.GetKey(KeyCode.Alpha4)  || Input.GetKey(KeyCode.Keypad4))
+		else if (Input.GetKeyDown(KeyCode.Alpha4)  || Input.GetKeyDown(KeyCode.Keypad4))
 		{
-			wolf = true;
+			//wolf = true;
 			print ("wolf" + wolf);
 			//add the name of the object to the spellList list
-			selectedSpellsList.Add (gameObject.name);
+			selectedSpellsList.Add (GameObject.FindWithTag("wolfCard").gameObject.name);
+			if(selectedSpellsList.Count > 2)
+			{
+				GameObject.FindWithTag (selectedSpellsList[0]).GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+				selectedSpellsList.Remove (selectedSpellsList[0]);
+
+			}
 			
 		} 
 		
-		//1 sets rooster to true
-		else if (Input.GetKey(KeyCode.Alpha5)  || Input.GetKey(KeyCode.Keypad5))
+		//1 adds rooster to selectSpellList which will set it to true
+		else if (Input.GetKeyDown(KeyCode.Alpha5)  || Input.GetKeyDown(KeyCode.Keypad5))
 		{
-			rooster = true;
+			//rooster = true;
 			print ("rooster" + rooster);
 			//add the name of the object to the spellList list
-			selectedSpellsList.Add (gameObject.name);
+			selectedSpellsList.Add (GameObject.FindWithTag("roosterCard").gameObject.name);
+			if(selectedSpellsList.Count > 2)
+			{
+				GameObject.FindWithTag (selectedSpellsList[0]).GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+				selectedSpellsList.Remove (selectedSpellsList[0]);
+			}
 			
 			
 		} 
@@ -170,6 +199,15 @@ public class platformerPlayer : MonoBehaviour {
 			myRigidbody.velocity = new Vector2 (walkSpeed, myRigidbody.velocity.y);
 			
 		} 
+		else if (Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.DownArrow)) 
+		{
+			//character moves down
+			//keep y the same but go right
+			myRigidbody.velocity = new Vector2 (walkSpeed, -myRigidbody.velocity.x);
+			
+		} 
+
+
 		// check if there's something below the character
 		if (isGrounded == true) 
 		{
@@ -201,77 +239,114 @@ public class platformerPlayer : MonoBehaviour {
 
 		// making spells
 		//checks if 2 cards have been selected plus Return 
-		
-		if (tiburon == true && rooster == true && Input.GetKey (KeyCode.Return))
-		{
-			walkSpeed = 15;
-			print(walkSpeed);
-			
-		}
-		
-		else if (tiburon == true && eagle == true && Input.GetKey (KeyCode.Return))
-		{
-			myRigidbody.transform.localScale = new Vector3 (.5f, .5f, .5f);
-			print ("small scale");
-		}
-		
-		else if (tiburon == true && dragon == true && Input.GetKey (KeyCode.Return))
-		{
-			myRigidbody.transform.localScale = new Vector3 (2, 2, 2);
-			print ("scale");
-		}
-		
-		else if (tiburon == true && wolf == true && Input.GetKey (KeyCode.Return))
-		{
-			lives +=1;
-		}
-		
-		else if (rooster == true && dragon == true && Input.GetKey (KeyCode.Return))
-		{
-			jumpSpeed = 7;
-			print(jumpSpeed);
-		}
-		
-		else if (rooster == true && eagle == true && Input.GetKey (KeyCode.Return))
-		{
-			myRigidbody.gravityScale = 0; 
-			print( myRigidbody.gravityScale);
-		}
-		
-		else if (rooster == true && wolf == true && Input.GetKey (KeyCode.Return))
-		{
-			walkSpeed = 1; 
-		}
-		
-		
-		else if (eagle == true && dragon == true && Input.GetKey (KeyCode.Return))
-		{
-			health += 3;
-		}
-		
-		else if (eagle == true && wolf == true && Input.GetKey (KeyCode.Return))
-		{
-			health -= 3;
-		}
-		
-		else if (dragon == true && wolf == true && Input.GetKey (KeyCode.Return))
-		{
-			lives -=1;
-		}
 
-//		foreach (string x in selectedSpellsList) 
-//		{
-//			if(x = "roosterCard")
-//			{
-//				rooster = true;
-//			}
-//
-//		}
+			/*if (tiburon == true && rooster == true && Input.GetKey (KeyCode.Return)) {
+				walkSpeed = 15;
+				print (walkSpeed);
+				
+			} else if (tiburon == true && eagle == true && Input.GetKey (KeyCode.Return)) {
+				myRigidbody.transform.localScale = new Vector3 (.5f, .5f, .5f);
+				print ("small scale");
+			} else if (tiburon == true && dragon == true && Input.GetKey (KeyCode.Return)) {
+				myRigidbody.transform.localScale = new Vector3 (2, 2, 2);
+				print ("scale");
+			} else if (tiburon == true && wolf == true && Input.GetKey (KeyCode.Return)) {
+				lives += 1;
+			} else if (rooster == true && dragon == true && Input.GetKey (KeyCode.Return)) {
+				jumpSpeed = 7;
+				print (jumpSpeed);
+			} else if (rooster == true && eagle == true && Input.GetKey (KeyCode.Return)) {
+				myRigidbody.gravityScale = 0; 
+				print ("gravvity" + myRigidbody.gravityScale);
+			} else if (rooster == true && wolf == true && Input.GetKey (KeyCode.Return)) {
+				walkSpeed = 1; 
+			} else if (eagle == true && dragon == true && Input.GetKey (KeyCode.Return)) {
+				health += 3;
+			} else if (eagle == true && wolf == true && Input.GetKey (KeyCode.Return)) {
+				health -= 3;
+			} else if (dragon == true && wolf == true && Input.GetKey (KeyCode.Return)) {
+				lives -= 1;
+			}*/
+	
+
+		//sets the spell booleans to true if the string is in the list
+		foreach (string x in selectedSpellsList) 
+		{
+
+
+			GameObject.FindWithTag (x).GetComponent<SpriteRenderer>().color = new Color (0, 1, 1, 1);
+
+
+		/*	if(x == "roosterCard")
+			{
+				rooster = true;
+				print (rooster + "rooster");
+
+			}
+			else if(x == "eagleCard")
+			{
+				eagle = true;
+
+			}
+			else if(x == "tiburonCard")
+			{
+				tiburon = true;
+			
+			}
+			else if(x == "dragonCard")
+			{
+				dragon = true;
+			
+			}
+			else if(x == "wolfCard")
+			{
+				wolf = true;
+
+			}*/
+
+			/*if (x == "tiburonCard"&& x == "roosterCard"&& Input.GetKey (KeyCode.Return)) {
+				walkSpeed = 15;
+				print (walkSpeed);
+				
+			} else if (x == "tiburonCard" == true && x == "eagleCard" && Input.GetKey (KeyCode.Return)) {
+				myRigidbody.transform.localScale = new Vector3 (.5f, .5f, .5f);
+				print ("small scale");34
+			} else if (x == "tiburonCard" == true && x == "dragonCard"&& Input.GetKey (KeyCode.Return)) {
+				myRigidbody.transform.localScale = new Vector3 (2, 2, 2);
+				print ("scale");
+			} else if (x == "tiburonCard" == true && x == "wolfCard" && Input.GetKey (KeyCode.Return)) {
+				lives += 1;
+			} else if (x == "roosterCard" && x == "dragonCard" && Input.GetKey (KeyCode.Return)) {
+				jumpSpeed = 7;
+				print (jumpSpeed);
+			} else if (x == "roosterCard" && x == "eagleCard" && Input.GetKey (KeyCode.Return)) {
+				myRigidbody.gravityScale = 0; 
+				print ("gravvity" + myRigidbody.gravityScale);
+			} else if (x == "roosterCard" && x == "wolfCard" && Input.GetKey (KeyCode.Return)) {
+				walkSpeed = 1; 
+			} else if (x == "eagleCard" && x == "dragonCard" && Input.GetKey (KeyCode.Return)) {
+				health += 3;
+			} else if (x == "eagleCard" && x == "wolfCard" && Input.GetKey (KeyCode.Return)) {
+				health -= 3;
+			} else if (dragon == true && x == "wolfCard" && Input.GetKey (KeyCode.Return)) {
+				lives -= 1;
+			}*/
+
+		}
+		if (Input.GetKey (KeyCode.Return))
+
+			if (selectedSpellsList.Contains("roosterCard") && selectedSpellsList.Contains("eagleCard") )
+			{
+				myRigidbody.gravityScale = 0; 
+				print ("gravvity" + myRigidbody.gravityScale);
+			}
+	
+	   
 
 	} //Update
 	
 	void OnCollisionEnter2D(Collision2D coll) {
-		//checks the player hits a spell card
+		//checks the player hits a spell card on level 1
 		if (coll.gameObject.tag == "spellCard") 
 		{
 
@@ -328,6 +403,11 @@ public class platformerPlayer : MonoBehaviour {
 
 	void OnTriggerStay2D()
 	{
+		//shows text if openDoor has been set to true
+		if (openDoor == true)
+		{
+			pressO.SetActive (true);
+		}
 		if (openDoor == true && Input.GetKey(KeyCode.O))
 		{
 		Application.LoadLevel("level2");
