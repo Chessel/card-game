@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class spellCards : MonoBehaviour {
 
+
 	//variables to assign a ceach spellCard  to a Game object
 	public GameObject dragonCardReference;
 	public GameObject roosterCardReference;
@@ -48,7 +49,6 @@ public class spellCards : MonoBehaviour {
 			}	
 		} //foreach loop
 			
-
 	
 	}//void Start
 

@@ -57,6 +57,8 @@ public class platformerPlayer : MonoBehaviour {
 	public bool rooster = false;
 
 
+
+
 	//variable that set the player score
 	public float score = 0;
 
@@ -70,62 +72,88 @@ public class platformerPlayer : MonoBehaviour {
 //	public GameObject eagleCardReference;
 //	public GameObject wolfCardReference;
 
-	//makes a List of the spellCArds ThreadSafeAttribute have been collected
+	//makes a List of the spellCArds that have been collected
 	public List<string> spellsList = new List<string>();
+
+	//makes a List of the spellCArds that had been selected by keypad input
+	public List<string> selectedSpellsList = new List<string>();
+
 
 	void Awake ()
 	{
 		DontDestroyOnLoad (GameObject.FindWithTag ("spellCard"));
 		DontDestroyOnLoad (this.gameObject);
-//		DontDestroyOnLoad ( List<string> (spellsList) );
-//		DontDestroyOnLoad (GameObject.FindWithTag ("dragonCard"));
-//		DontDestroyOnLoad (GameObject.FindWithTag ("tiburonCard"));
-//		DontDestroyOnLoad (GameObject.FindWithTag ("wolfCard"));
-//		DontDestroyOnLoad (GameObject.FindWithTag ("roosterCard"));
-//		DontDestroyOnLoad (GameObject.FindWithTag ("eagleCard"));
 	}
+
 	// Use this for initialization
 	void Start () 
 	{
 		myRigidbody = this.GetComponent<Rigidbody2D> ();
-		
-		/*if (Application.loadedLevelName == "level2") 
-		{
-			// print ("level2 loaded");
-			dragonCardReference = GameObject.FindWithTag ("dragonCard");
-			tiburonCardReference = GameObject.FindWithTag ("tiburonCard");
-			roosterCardReference = GameObject.FindWithTag ("roosterCard");
-			wolfCardReference = GameObject.FindWithTag ("wolfCard");
-			eagleCardReference = GameObject.FindWithTag ("eagleCard");
-			
-			dragonCardReference.SetActive (false);
-			tiburonCardReference.SetActive (false);
-			roosterCardReference.SetActive (false);
-			wolfCardReference.SetActive (false);
-			eagleCardReference.SetActive (false);
 
-			foreach (string x in spellsList) {
-				print (x + "Card");
-				
-				if (x == "dragon") {
-					dragonCardReference.SetActive (true);
-				} else if (x == "tiburon") {
-					tiburonCardReference.SetActive (true);
-				} else if (x == "rooster") {
-					roosterCardReference.SetActive (true);
-				} else if (x == "eagle") {
-					eagleCardReference.SetActive (true);
-				} else if (x == "wolf") {
-					wolfCardReference.SetActive (true);
-				}	
-			}
-		
-		}*/
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
+		// Level 2 spell select
+		
+		
+		//1 sets dragon to true
+		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
+		{
+			
+			dragon = true;
+			print ("dragon" + dragon);
+			//add the name of the object to the spellList list
+			selectedSpellsList.Add (gameObject.name);
+			
+			//Destroy (this.gameObject);
+		} 
+		
+		//3 sets tiburon to true
+		else if (Input.GetKey(KeyCode.Alpha2)  || Input.GetKey(KeyCode.Keypad2))
+		{
+			tiburon = true;
+			print ("tiburon" + tiburon);
+
+			//add the name of the object to the spellList list
+			selectedSpellsList.Add (gameObject.name);
+
+		} 
+		
+		//1 sets eagle to true
+		else if (Input.GetKey(KeyCode.Alpha3)  || Input.GetKey(KeyCode.Keypad3))
+		{
+			eagle = true;
+			print ("eagle" + eagle);
+			//add the name of the object to the spellList list
+			selectedSpellsList.Add (gameObject.name);
+			
+			
+		} 
+		
+		//1 sets wolf to true
+		else if (Input.GetKey(KeyCode.Alpha4)  || Input.GetKey(KeyCode.Keypad4))
+		{
+			wolf = true;
+			print ("wolf" + wolf);
+			//add the name of the object to the spellList list
+			selectedSpellsList.Add (gameObject.name);
+			
+		} 
+		
+		//1 sets rooster to true
+		else if (Input.GetKey(KeyCode.Alpha5)  || Input.GetKey(KeyCode.Keypad5))
+		{
+			rooster = true;
+			print ("rooster" + rooster);
+			//add the name of the object to the spellList list
+			selectedSpellsList.Add (gameObject.name);
+			
+			
+		} 
+
+		//character movement controls
 		if (Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.LeftArrow)) 
 		{
 			
@@ -171,54 +199,6 @@ public class platformerPlayer : MonoBehaviour {
 		}
 		
 
-		// Level 2 spell select
-
-
-		//1 sets dragon to true
-		if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
-		{
-
-			dragon = true;
-			print ("dragon" + dragon);
-
-			//Destroy (this.gameObject);
-		} 
-		
-		//3 sets tiburon to true
-		else if (Input.GetKey(KeyCode.Alpha2)  || Input.GetKey(KeyCode.Keypad2))
-		{
-			tiburon = true;
-			print ("tiburon" + tiburon);
-
-
-		} 
-		
-		//1 sets eagle to true
-		else if (Input.GetKey(KeyCode.Alpha3)  || Input.GetKey(KeyCode.Keypad3))
-		{
-			eagle = true;
-			//print ("eagle" + eagle);
-
-
-		} 
-		
-		//1 sets wolf to true
-		else if (Input.GetKey(KeyCode.Alpha4)  || Input.GetKey(KeyCode.Keypad4))
-		{
-			wolf = true;
-			//print ("wolf" + wolf);
-
-		} 
-		
-		//1 sets rooster to true
-		else if (Input.GetKey(KeyCode.Alpha5)  || Input.GetKey(KeyCode.Keypad5))
-		{
-			rooster = true;
-			//print ("rooster" + rooster);
-
-
-		} 
-
 		// making spells
 		//checks if 2 cards have been selected plus Return 
 		
@@ -226,61 +206,67 @@ public class platformerPlayer : MonoBehaviour {
 		{
 			walkSpeed = 15;
 			print(walkSpeed);
-
+			
 		}
-
+		
 		else if (tiburon == true && eagle == true && Input.GetKey (KeyCode.Return))
 		{
 			myRigidbody.transform.localScale = new Vector3 (.5f, .5f, .5f);
 			print ("small scale");
 		}
-
+		
 		else if (tiburon == true && dragon == true && Input.GetKey (KeyCode.Return))
 		{
 			myRigidbody.transform.localScale = new Vector3 (2, 2, 2);
 			print ("scale");
 		}
-
+		
 		else if (tiburon == true && wolf == true && Input.GetKey (KeyCode.Return))
 		{
 			lives +=1;
 		}
-
+		
 		else if (rooster == true && dragon == true && Input.GetKey (KeyCode.Return))
 		{
 			jumpSpeed = 7;
 			print(jumpSpeed);
 		}
-
+		
 		else if (rooster == true && eagle == true && Input.GetKey (KeyCode.Return))
 		{
 			myRigidbody.gravityScale = 0; 
 			print( myRigidbody.gravityScale);
 		}
-
+		
 		else if (rooster == true && wolf == true && Input.GetKey (KeyCode.Return))
 		{
 			walkSpeed = 1; 
 		}
-
+		
 		
 		else if (eagle == true && dragon == true && Input.GetKey (KeyCode.Return))
 		{
 			health += 3;
 		}
-
+		
 		else if (eagle == true && wolf == true && Input.GetKey (KeyCode.Return))
 		{
 			health -= 3;
 		}
-
+		
 		else if (dragon == true && wolf == true && Input.GetKey (KeyCode.Return))
 		{
 			lives -=1;
 		}
 
-	
-
+//		foreach (string x in selectedSpellsList) 
+//		{
+//			if(x = "roosterCard")
+//			{
+//				rooster = true;
+//			}
+//
+//		}
 
 	} //Update
 	
@@ -288,6 +274,8 @@ public class platformerPlayer : MonoBehaviour {
 		//checks the player hits a spell card
 		if (coll.gameObject.tag == "spellCard") 
 		{
+
+			//add the name of the object to the spellList list
 			spellsList.Add (coll.gameObject.name);
 			print (spellsList);
 			//destroys the spellCard and the counter spellCards increases by one everytime the player collects a card
