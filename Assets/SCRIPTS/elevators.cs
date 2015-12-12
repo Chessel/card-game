@@ -18,7 +18,7 @@ public class elevators : MonoBehaviour {
 	private float maxHeight = 3;
 	
 	//sets the minumin heigh the elevators can go
-	private float minHeight = -1.5f;
+	private float minHeight = -3.5f;
 
 
 	
@@ -42,11 +42,11 @@ public class elevators : MonoBehaviour {
 
 		if (height >= maxHeight) {
 			goesUp = false;
-			print("going down now");
+			// print("going down now");
 		} else if (height <= minHeight) 
 		{	
 			goesUp = true;
-			print("going up now");
+			// print("going up now");
 			
 		}
 
@@ -58,7 +58,7 @@ public class elevators : MonoBehaviour {
 		} 
 		else if(goesUp == false)
 		{
-			print ("going down");
+			// print ("going down");
 			elevatorRigidbody.transform.position += Vector3.down * goesUpSpeed * Time.deltaTime;
 			elevatorRigidbody.transform.position += Vector3.down * goesUpSpeed * Time.deltaTime;
 		}
